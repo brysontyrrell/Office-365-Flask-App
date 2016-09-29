@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block base_container_content %}
+    <div class="col-lg-10">
+      <div>
+
+        {% if o365_sign_in_url and not session['user_email'] %}
+        <p>Use the button below to connect to Office 365.</p>
+        <button class="btn" onclick="window.location.href='{{ o365_sign_in_url }}'">
+          <span class="label">Connect to Office 365</span>
+        </button>
+        {% endif %}
+
+        {% if session['user_email'] %}
+        <p>Hello <b>{{ session['user_email'] }}!</b></p>
+        <p>You have successfully authenticated this app with Office 365. Your access token is:</p>
+        <p style="word-wrap: break-word;"><b>{{ session['access_token'] }}</b></p>
+        {%  endif %}
+
+      </div>
+    </div>
+  </div>
+{% endblock %}
